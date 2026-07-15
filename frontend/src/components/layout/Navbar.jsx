@@ -52,10 +52,11 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
           ? 'py-3.5 bg-white/70 dark:bg-slate-950/75 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-lg shadow-slate-200/10 dark:shadow-purple-950/10'
           : 'py-5 bg-transparent border-b border-transparent'
-        }`}
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
@@ -78,10 +79,11 @@ const Navbar = () => {
               key={link.name}
               href={link.href}
               onClick={() => setActiveLink(link.name)}
-              className={`relative py-2 text-sm font-medium transition-colors duration-300 ${activeLink === link.name
+              className={`relative py-2 text-sm font-medium transition-colors duration-300 ${
+                activeLink === link.name
                   ? 'text-purple-600 dark:text-purple-400 font-semibold'
                   : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
-                }`}
+              }`}
             >
               {link.name}
               {activeLink === link.name && (
@@ -182,10 +184,11 @@ const Navbar = () => {
                     setActiveLink(link.name);
                     setIsOpen(false);
                   }}
-                  className={`text-base font-medium py-1 transition-colors ${activeLink === link.name
+                  className={`text-base font-medium py-1 transition-colors ${
+                    activeLink === link.name
                       ? 'text-purple-600 dark:text-purple-400 font-semibold'
                       : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
-                    }`}
+                  }`}
                 >
                   {link.name}
                 </motion.a>
