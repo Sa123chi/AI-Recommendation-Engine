@@ -1,0 +1,19 @@
+{
+  "name": "smart-recommend-ai",
+  "version": "1.0.0",
+  "description": "Production-ready full-stack AI recommendation project",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\"",
+    "start": "npm run start --workspace=backend",
+    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend",
+    "format": "npm run format --workspace=frontend && npm run format --workspace=backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
