@@ -15,7 +15,7 @@ function Home() {
       try {
         const [healthRes, recsRes] = await Promise.all([
           axios.get('/api/health'),
-          axios.get('/api/recommendations')
+          axios.get('/api/recommendations'),
         ]);
         setHealth(healthRes.data);
         setRecommendations(recsRes.data.data);
@@ -43,13 +43,15 @@ function Home() {
             </span>
           </div>
           <div className="flex items-center space-x-4">
-            <div className={`flex items-center space-x-2 text-xs font-semibold px-3 py-1.5 rounded-full border ${
-              error 
-                ? 'bg-rose-500/10 border-rose-500/20 text-rose-400' 
-                : loading 
-                ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
-                : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-            }`}>
+            <div
+              className={`flex items-center space-x-2 text-xs font-semibold px-3 py-1.5 rounded-full border ${
+                error
+                  ? 'bg-rose-500/10 border-rose-500/20 text-rose-400'
+                  : loading
+                    ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
+                    : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+              }`}
+            >
               <Activity className="w-3.5 h-3.5" />
               <span>
                 {error ? 'API Offline' : loading ? 'Checking Status...' : 'Systems Active'}
@@ -71,14 +73,15 @@ function Home() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>AI-Driven Personalization Engine</span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-b from-white to-slate-300 bg-clip-text text-transparent"
           >
-            Predictive Intelligence,<br />
+            Predictive Intelligence,
+            <br />
             <span className="bg-gradient-to-r from-sky-400 via-sky-500 to-indigo-500 bg-clip-text text-transparent text-glow">
               Engineered for Production
             </span>
@@ -103,7 +106,8 @@ function Home() {
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">Bulletproof Security</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Helmet HTTP security headers, CORS constraints, and request rate-limiting enabled at application core.
+              Helmet HTTP security headers, CORS constraints, and request rate-limiting enabled at
+              application core.
             </p>
           </div>
           <div className="glass-panel glass-panel-hover p-6 rounded-2xl">
@@ -112,7 +116,8 @@ function Home() {
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">Relational Data Engine</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Synchronous, ultra-fast SQLite core with write-ahead-logging and a PostgreSQL-compatible repository api.
+              Synchronous, ultra-fast SQLite core with write-ahead-logging and a
+              PostgreSQL-compatible repository api.
             </p>
           </div>
           <div className="glass-panel glass-panel-hover p-6 rounded-2xl">
@@ -121,7 +126,8 @@ function Home() {
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">Vite-Optimized HMR</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Lightning-fast dev compiling alongside Tailwind CSS, ESLint plugins, and workspace task orchestration.
+              Lightning-fast dev compiling alongside Tailwind CSS, ESLint plugins, and workspace
+              task orchestration.
             </p>
           </div>
         </div>
@@ -161,7 +167,9 @@ function Home() {
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-slate-400">Server Time</span>
-                  <span className="text-slate-200 font-mono">{new Date(health.timestamp).toLocaleTimeString()}</span>
+                  <span className="text-slate-200 font-mono">
+                    {new Date(health.timestamp).toLocaleTimeString()}
+                  </span>
                 </div>
               </div>
             )}
@@ -183,7 +191,10 @@ function Home() {
             ) : (
               <div className="space-y-3.5">
                 {recommendations.map((rec) => (
-                  <div key={rec.id} className="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800 flex items-center justify-between hover:border-slate-700 transition-colors">
+                  <div
+                    key={rec.id}
+                    className="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800 flex items-center justify-between hover:border-slate-700 transition-colors"
+                  >
                     <div>
                       <h4 className="font-semibold text-slate-200 text-sm">{rec.name}</h4>
                       <p className="text-slate-500 text-xs mt-0.5">{rec.category}</p>
@@ -204,7 +215,9 @@ function Home() {
 
       {/* Footer */}
       <footer className="border-t border-slate-900 py-6 text-center text-slate-500 text-xs">
-        <p>&copy; {new Date().getFullYear()} Smart Recommend AI. Architected with Antigravity AI.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Smart Recommend AI. Architected with Antigravity AI.
+        </p>
       </footer>
     </div>
   );

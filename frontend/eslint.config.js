@@ -3,7 +3,7 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 
 export default [
   {
-    ignores: ['dist', 'node_modules']
+    ignores: ['dist', 'node_modules'],
   },
   {
     files: ['**/*.{js,jsx}'],
@@ -22,30 +22,30 @@ export default [
         clearInterval: 'readonly',
         fetch: 'readonly',
         localStorage: 'readonly',
-        sessionStorage: 'readonly'
+        sessionStorage: 'readonly',
       },
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
-      }
+          jsx: true,
+        },
+      },
     },
     plugins: {
       react: reactPlugin,
-      'react-hooks': reactHooksPlugin
+      'react-hooks': reactHooksPlugin,
     },
     rules: {
-      'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'no-console': 'off',
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
       'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn'
+      'react-hooks/exhaustive-deps': 'warn',
     },
     settings: {
       react: {
-        version: 'detect'
-      }
-    }
-  }
+        version: 'detect',
+      },
+    },
+  },
 ];
