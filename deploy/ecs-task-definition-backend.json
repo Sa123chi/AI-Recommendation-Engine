@@ -1,0 +1,52 @@
+{
+  "family": "smart-recommend-ai-backend",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "backend",
+      "image": "<AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/smart-recommend-ai-backend:latest",
+      "essential": true,
+      "portMappings": [
+        { "containerPort": 5000, "protocol": "tcp" }
+      ],
+      "environment": [
+        { "name": "PORT", "value": "5000" },
+        { "name": "NODE_ENV", "value": "production" },
+        { "name": "SIGNUP_BONUS_CREDITS", "value": "5" },
+        { "name": "JWT_ACCESS_EXPIRES_IN", "value": "15m" },
+        { "name": "JWT_REFRESH_EXPIRES_IN", "value": "7d" },
+        { "name": "CORS_ORIGIN", "value": "https://<YOUR_FRONTEND_DOMAIN>" },
+        { "name": "FRONTEND_URL", "value": "https://<YOUR_FRONTEND_DOMAIN>" }
+      ],
+      "secrets": [
+        { "name": "DATABASE_URL", "valueFrom": "arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT_ID>:secret:smart-recommend-ai/DATABASE_URL" },
+        { "name": "JWT_ACCESS_SECRET", "valueFrom": "arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT_ID>:secret:smart-recommend-ai/JWT_ACCESS_SECRET" },
+        { "name": "JWT_REFRESH_SECRET", "valueFrom": "arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT_ID>:secret:smart-recommend-ai/JWT_REFRESH_SECRET" },
+        { "name": "STRIPE_SECRET_KEY", "valueFrom": "arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT_ID>:secret:smart-recommend-ai/STRIPE_SECRET_KEY" },
+        { "name": "STRIPE_PRICE_ID", "valueFrom": "arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT_ID>:secret:smart-recommend-ai/STRIPE_PRICE_ID" },
+        { "name": "STRIPE_WEBHOOK_SECRET", "valueFrom": "arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT_ID>:secret:smart-recommend-ai/STRIPE_WEBHOOK_SECRET" }
+      ],
+      "healthCheck": {
+        "command": ["CMD-SHELL", "node -e \"require('http').get('http://127.0.0.1:5000/api/health', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))\""],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 15
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/smart-recommend-ai-backend",
+          "awslogs-region": "<AWS_REGION>",
+          "awslogs-stream-prefix": "backend",
+          "awslogs-create-group": "true"
+        }
+      }
+    }
+  ]
+}
