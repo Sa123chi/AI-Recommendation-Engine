@@ -1,0 +1,24 @@
+{
+  "name": "smart-recommend-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Smart Recommend AI - full-stack AI recommendation engine (frontend + backend + PostgreSQL), deployed on AWS via Docker",
+  "scripts": {
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "seed:backend": "npm run seed --prefix backend",
+    "migrate": "node database/migrate.js",
+    "migrate:seed": "node database/migrate.js --seed"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
