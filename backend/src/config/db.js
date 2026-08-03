@@ -10,8 +10,12 @@ function getPoolConfig() {
   const useSsl = databaseUrl.includes('sslmode=require')
     || databaseUrl.includes('neon.tech')
     || databaseUrl.includes('supabase.co')
+<<<<<<< HEAD
     || databaseUrl.includes('rds.amazonaws.com')
     || process.env.DATABASE_SSL === 'true';
+=======
+    || process.env.NODE_ENV === 'production';
+>>>>>>> ef26ba408c4a7aafb41261530aadfb558352f89b
 
   return {
     connectionString: databaseUrl,
