@@ -313,6 +313,14 @@ docker compose up -d --build
 
 This starts PostgreSQL (with schema + seed data auto-loaded), the backend, and the frontend (via Nginx).
 
+### Render (one-click Blueprint)
+
+A `render.yaml` at the repo root provisions a Postgres database, the backend, and the frontend
+automatically when you connect the repo on Render. JWT secrets are auto-generated; Stripe keys are
+left blank for you to fill in via the dashboard if you enable real billing. See the comments in
+`render.yaml` regarding `VITE_API_URL` — double-check the backend's actual assigned URL after your
+first deploy.
+
 ## Troubleshooting
 
 **`DATABASE_URL is required` error**
